@@ -1,6 +1,5 @@
 let attractors = [];
 let particles = [];
-let sketchUtils;
 
 function setup() {
   //Create Canvas
@@ -16,7 +15,6 @@ function setup() {
   }
 
   //instantiate sketch utilities for this sketch
-  sketchUtils = new SketchUtils();
 
   //Draw background once (particles are semi-transparent)
   background(0);
@@ -27,7 +25,7 @@ function draw() {
   // noLoop();
 
   // Uncomment to save animation by frame
-  // sketchUtils.renderAnimation();
+  // SketchUtils.renderAnimation();
 
   for (let i = 0; i < particles.length; i++) {
     particles[i].run();
@@ -35,11 +33,15 @@ function draw() {
   for (let i = 0; i < attractors.length; i++) {
     attractors[i].run();
   }
-
-  // let mouseVector = createVector(mouseX, mouseY);
 }
 
 //Left click to create new attractor position
 function mousePressed() {
-  sketchUtils.createAttractor({ DeleteOldestAttractor: true });
+  SketchUtils.createAttractor({ DeleteOldestAttractor: true });
+}
+
+function keyPressed() {
+  if (key === " ") {
+    SketchUtils.toggleLoop();
+  }
 }

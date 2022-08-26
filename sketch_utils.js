@@ -1,4 +1,6 @@
 class SketchUtils {
+  // ATTRACTOR BEHAVIOUR
+
   randomAttractorPlacement() {
     let r = random(1);
     if (r < 0.1) {
@@ -12,7 +14,7 @@ class SketchUtils {
     }
   }
 
-  createAttractor(options) {
+  static createAttractor(options) {
     let newAttractor = new Attractor();
     newAttractor.pos = createVector(mouseX, mouseY);
     attractors.push(newAttractor);
@@ -26,8 +28,32 @@ class SketchUtils {
     }
   }
 
+  // POSITIONING
+
+  //Initialize Attractor position at random point in canvas
+  static getRandomPosition() {
+    return createVector(random(width), random(height));
+  }
+
+  //Initialize Attractor at concrete location
+  static setPosition(x, y) {
+    return createVector(x, y);
+  }
+
+  // LOOPING
+
+  static toggleLoop() {
+    if (isLooping()) {
+      noLoop();
+    } else if (!isLooping()) {
+      loop();
+    }
+  }
+
+  // RENDERING
+
   //Render animation to video
-  renderAnimation() {
+  static renderAnimation() {
     if (frameCount === 1) {
       capturer.start();
     }
