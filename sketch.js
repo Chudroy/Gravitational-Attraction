@@ -1,88 +1,45 @@
 let attractors = [];
 let particles = [];
-let randomVector
+let sketchUtils;
 
 function setup() {
-  randomVector = createVector(random(width), random(height))
+  //Create Canvas
   createCanvas(1080, 920);
-  for (let i = 0; i < 0; i++) {
-    attractors.push(new Attractor())
-  }
+
+  //Create Attractor points for particles to gravitate towards
+  attractors.push(new Attractor(width / 2, 0));
+  attractors.push(new Attractor(width / 2, height / 2));
+
+  //Create Particles
   for (let i = 0; i < 2000; i++) {
-    particles.push(new Particle())
+    particles.push(new Particle());
   }
+
+  //instantiate sketch utilities for this sketch
+  sketchUtils = new SketchUtils();
+
+  //Draw background once (particles are semi-transparent)
   background(0);
 }
 
 function draw() {
+  // Uncomment to pause animation in live editor
+  // noLoop();
 
-  // renderAnimation();
-  console.log(frameCount)
+  // Uncomment to save animation by frame
+  // sketchUtils.renderAnimation();
 
-  for (let i = 0; i < attractors.length; i++) {
-    attractors[i].run();
-  }
   for (let i = 0; i < particles.length; i++) {
     particles[i].run();
   }
-
-  // let r = random(1)
-
-  // if (r < 0.1) {
-  //   attractors.push(new Attractor())
-  // }
-
-  // for (let i = 0; i < particles.length; i++) {
-  //   let particle = particles[i]
-  //   for (let j = 0; j < attractors.length; j++) {
-  //     particle.applyForce(attractors[j].pos)
-  //   }
-  // }
-
-  let mouseVector = createVector(mouseX, mouseY)
-  let attVec01 = createVector(width / 2, 0);
-  let attVec02 = createVector(width / 2, height / 2);
-  // let attVec03 = createVector(width / 2, height / 2 + height / 4);
-  // let attVec04 = createVector(width / 2 + width / 4, height / 2 + height / 4);
-  // let attVec05 = createVector(width / 4, height / 2 + height / 2 + height / 4);
-  push()
-  fill(0, 255, 0)
-  ellipse(width / 2, 0, 20)
-  ellipse(width / 2, height / 2, 20)
-  ellipse(width / 2, height / 2 + height / 4, 20)
-  ellipse(width / 2 + width / 4, height / 2 + height / 4, 20)
-  ellipse(width / 4, height / 2 + height / 4, 20)
-  pop();
-  for (let i = 0; i < particles.length; i++) {
-    if (frameCount > 300) {
-      particles[i].applyForce(attVec01)
-      particles[i].applyForce(attVec02)
-      // particles[i].applyForce(attVec03)
-      // particles[i].applyForce(attVec04)
-      // particles[i].applyForce(attVec05)
-    }
+  for (let i = 0; i < attractors.length; i++) {
+    attractors[i].run();
   }
-  if (attractors.length > 1) {
-    attractors.splice(0, 1)
-  }
+
+  // let mouseVector = createVector(mouseX, mouseY);
 }
 
-
+//Left click to create new attractor position
 function mousePressed() {
-  let newAttractor = new Attractor();
-  newAttractor.pos = createVector(mouseX, mouseY)
-  attractors.push(newAttractor)
-}
-
-function renderAnimation() {
-  if (frameCount === 1) {
-    capturer.start();
-  }
-
-  capturer.capture(canvas)
-
-  if (keyIsPressed && keyCode == BACKSPACE) {
-    capturer.save();
-    capturer.stop();
-  }
+  sketchUtils.createAttractor({ DeleteOldestAttractor: true });
 }
