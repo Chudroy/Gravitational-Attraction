@@ -30,12 +30,12 @@ class SketchUtils {
 
   // POSITIONING
 
-  //Initialize Attractor position at random point in canvas
+  //Initialize vector position at random point in canvas
   static getRandomPosition() {
     return createVector(random(width), random(height));
   }
 
-  //Initialize Attractor at concrete location
+  //Initialize vector at concrete location
   static setPosition(x, y) {
     return createVector(x, y);
   }
