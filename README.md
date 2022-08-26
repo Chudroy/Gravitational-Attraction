@@ -48,3 +48,19 @@ function setup() {
 }
 ```
 
+### Particles follow attractors and/or mouse position
+
+In the `run` function in `particle.js`, add or remove the `applyAttractors` and `applyMouseForce` functions.
+
+```javascript
+  run() {
+    this.update();
+    this.edges();
+    this.show();
+    //this function applies the position of the attractors as a gravitational force on the particles
+    this.applyAttractors();
+    //this function applies the mouse position as a gravitational force. The particles follow the mouse.
+    this.applyMouseForce();
+  }
+```
+
