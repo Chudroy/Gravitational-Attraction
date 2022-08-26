@@ -50,17 +50,23 @@ function setup() {
 
 ### Particles follow attractors and/or mouse position
 
-In the `run` function in `particle.js`, add or remove the `applyAttractors` and `applyMouseForce` functions.
+- In the `run` function in `particle.js`, add or remove the `applyAttractors` and `applyMouseForce` functions.
+- The `delay` property specifies after how many frames should the forces start to be applied, for visual effects variety
+- frameCount is a builtin p5js property
 
 ```javascript
   run() {
     this.update();
     this.edges();
     this.show();
-    //this function applies the position of the attractors as a gravitational force on the particles
-    this.applyAttractors();
-    //this function applies the mouse position as a gravitational force. The particles follow the mouse.
-    this.applyMouseForce();
+    if (frameCount >= this.delay) {
+      //this function applies the position of the attractors as a gravitational force on the particles
+      this.applyAttractors();
+      //this function applies the mouse position as a gravitational force. The particles follow the mouse.
+      //this.applyMouseForce();
+    }
   }
+  
+
 ```
 
