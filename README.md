@@ -59,6 +59,19 @@ function setup() {
 }
 ```
 
+### Create Attractors at run-time
+
+Left click on the canvas to create an attractor at the mouse position. This functionality can be found in `sketch.js`, 
+
+```javascript
+//Left click to create new attractor position
+function mousePressed() {
+  SketchUtils.createAttractor({ DeleteOldestAttractor: true });
+}
+```
+Set the `DeleteOldestAttractor` option to true or false, if you want to delete the oldest attractor's effect on the particles, thus allowing for more particle
+movement variety on attractor placement.
+
 ### Particles follow attractors and/or mouse position
 
 - In the `run` function in `particle.js`, add or remove the `applyAttractors` and `applyMouseForce` functions.
