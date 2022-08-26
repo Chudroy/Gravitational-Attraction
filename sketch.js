@@ -30,6 +30,7 @@ function draw() {
   for (let i = 0; i < particles.length; i++) {
     particles[i].run();
   }
+
   for (let i = 0; i < attractors.length; i++) {
     attractors[i].run();
   }
@@ -40,6 +41,7 @@ function mousePressed() {
   SketchUtils.createAttractor({ DeleteOldestAttractor: true });
 }
 
+//Play and Pause the loop
 function keyPressed() {
   if (key === " ") {
     SketchUtils.toggleLoop();

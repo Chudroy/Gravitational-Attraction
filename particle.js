@@ -4,13 +4,16 @@ class Particle {
   pos = createVector(width / 2, 0);
   vel = p5.Vector.random2D().mult(2);
   acc = createVector(0, 0);
+  delay = 30;
 
   run() {
     this.update();
     this.edges();
     this.show();
-    this.applyAttractors();
-    // this.applyMouseForce();
+    if (frameCount >= this.delay) {
+      this.applyAttractors();
+      // this.applyMouseForce();
+    }
   }
 
   show() {
