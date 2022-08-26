@@ -76,7 +76,7 @@ movement variety on attractor placement.
 
 - In the `run` function in `particle.js`, add or remove the `applyAttractors` and `applyMouseForce` functions.
 - The `delay` property specifies after how many frames should the forces start to be applied, for visual effects variety
-- frameCount is a builtin p5js property
+- `frameCount` is a builtin p5js property
 
 ```javascript
   run() {
