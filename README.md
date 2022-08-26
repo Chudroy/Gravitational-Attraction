@@ -1,5 +1,5 @@
 # Gravitational-Attraction
-A particle simulation that creates interesting visual effects
+A particle simulation that creates interesting visual effects, made with [p5.js.](https://p5js.org/)
 
 ## Controls
 
@@ -27,6 +27,17 @@ and in `sketch_utils.js`
     }
   }
 ```
+
+### Capture Video
+
+To capture video, in `sketch.js`, in the `draw` function, uncomment the following line of code.
+
+```javascript
+  // SketchUtils.renderAnimation();
+```
+
+This will use the CCapture package to render an animation in .webm format. To change the rendering options, they can be found in the `index.html`. The library used is
+[CCapture.](https://github.com/spite/ccapture.js/). Go to their documentation for more information on rendering options.
 
 ### Create Attractor Placement on Initialization
 
@@ -78,4 +89,6 @@ in `attractor.js`, toggle the `show` function. If running, it shows the position
     this.show(false);
   }
 ```
+
+
 
