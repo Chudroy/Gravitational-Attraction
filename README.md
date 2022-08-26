@@ -66,7 +66,16 @@ function setup() {
       //this.applyMouseForce();
     }
   }
-  
+```
 
+### Show Attractor position in sketch
+
+in `attractor.js`, toggle the `show` function. If running, it shows the position of the Attractor as a green circle.
+
+```javascript
+ run() {
+    //Toggle attractor display
+    this.show(false);
+  }
 ```
 
