@@ -1,5 +1,5 @@
 # Gravitational-Attraction
-A particle simulation that creates interesting visual effects
+A particle simulation that creates interesting visual effects, made with [p5.js](https://p5js.org/).
 
 ## Controls
 
@@ -28,6 +28,17 @@ and in `sketch_utils.js`
   }
 ```
 
+### Capture Video
+
+To capture video, in `sketch.js`, in the `draw` function, uncomment the following line of code.
+
+```javascript
+  // SketchUtils.renderAnimation();
+```
+
+This will use the CCapture package to render an animation in .webm format. To change the rendering options, they can be found in the `index.html`. The library used is
+[CCapture](https://github.com/spite/ccapture.js/). Go to their documentation for more information on rendering options.
+
 ### Create Attractor Placement on Initialization
 
 In the `sketch.js` file, in the `setup` function, add attractors to the attractor array, specifying an X and Y coordinate in the arguments.
@@ -50,17 +61,34 @@ function setup() {
 
 ### Particles follow attractors and/or mouse position
 
-In the `run` function in `particle.js`, add or remove the `applyAttractors` and `applyMouseForce` functions.
+- In the `run` function in `particle.js`, add or remove the `applyAttractors` and `applyMouseForce` functions.
+- The `delay` property specifies after how many frames should the forces start to be applied, for visual effects variety
+- frameCount is a builtin p5js property
 
 ```javascript
   run() {
     this.update();
     this.edges();
     this.show();
-    //this function applies the position of the attractors as a gravitational force on the particles
-    this.applyAttractors();
-    //this function applies the mouse position as a gravitational force. The particles follow the mouse.
-    this.applyMouseForce();
+    if (frameCount >= this.delay) {
+      //this function applies the position of the attractors as a gravitational force on the particles
+      this.applyAttractors();
+      //this function applies the mouse position as a gravitational force. The particles follow the mouse.
+      //this.applyMouseForce();
+    }
   }
 ```
+
+### Show Attractor position in sketch
+
+in `attractor.js`, toggle the `show` function. If running, it shows the position of the Attractor as a green circle.
+
+```javascript
+ run() {
+    //Toggle attractor display
+    this.show(false);
+  }
+```
+
+
 
